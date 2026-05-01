@@ -1,0 +1,13 @@
+---
+
+// 記事の詳細情報を取得
+const { date } = Astro.props;
+
+
+
+const publishedDate = new Date(date);
+const publishedDataAtJa = `${publishedDate.getFullYear()}年${publishedDate.getMonth() + 1}月${publishedDate.getDate()}日`;
+---
+
+
+<time datetime={date} class="notes__date">{publishedDataAtJa}</time>

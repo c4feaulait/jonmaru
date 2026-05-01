@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogDate from "../components/BlogDate.astro";
+import { getCollection } from "astro:content";
+
+const blogs = await getCollection("blogs");
+
+---
+
+<Layout title="My first blog with Astro">
+  <main>
+    <section class="notes">
+      <div class="container">
+        <h2 class="section-title">Notes</h2>
+        
+    <ul class="notes__list">
+      {
+        blogs.length > 0 ? (
+          blogs.map((blog) => (
+            <li class="notes__item">
+            <a href={blog.id} class="notes__link">
+              <figure class="notes__thumb">
+                <img
+                  src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
+                  alt={blog.data.title}
+                />
+                </figure>
+              <div class="notes__content">
+                <div class="notes__inner">
+                  <BlogDate date={blog.data.publishedAt} />
+                  <span class="notes__category">diary</span>
+                </div>
+                <h3 class="notes__title">{blog.data.title}</h3>
+              </div>
+            </a>
+          </li>
+          ))
+        ) : (
+          <p>記事がありません。</p>
+        )
+      }
+    </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

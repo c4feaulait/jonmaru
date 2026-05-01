@@ -1,0 +1,61 @@
+---
+import BlogDate from "../components/BlogDate.astro";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// 詳細記事ページの全パスを取得
+export async function getStaticPaths() {
+    const blogs = await getCollection("blogs");
+    return blogs.map((blog) => ({
+    params: {
+        blogId: blog.id,
+    },
+    props: {
+        blog,
+    },
+    }));
+}
+
+// 記事の詳細情報を取得
+const { blog } = Astro.props;
+---
+
+<Layout title="My first blog with Astro">
+    <main>
+    </main>
+    <main class="sub">
+        <section class="post">
+            <div class="container">
+                <figure class="post__thumb">
+                    <img
+                        src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
+                        alt={blog.data.title}
+                    />
+                </figure>
+        
+            <h1 class="post-title">{blog.data.title}</h1>
+            <div class="post__inner">
+                <BlogDate date={blog.data.publishedAt} />
+                <span class="notes__category">diary</span>
+            </div>
+            <div class="post" set:html={blog.data.content}></div>
+    
+            </div>
+        </section>
+        <div class="container">
+            <nav class="pagination">
+                <ul class="pagination__list">
+                    <li>
+                        <a class="pagination__link " href="#" data-direction="previous">（Previous）</a>
+                    </li>
+                    <li>
+                        <a href="/" class="pagination__link">（all）</a>
+                    </li>
+                    <li>
+                        <a class="pagination__link " href="#" data-direction="next">（next）</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</Layout>
