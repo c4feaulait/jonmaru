@@ -361,18 +361,3 @@ letter-spacing: .05em;
   font-size: 14px;
   font-feature-settings: "palt";
 }
-
-.pagination {
-  padding-bottom: 20px;
-}
-.pagination__list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.pagination__link {
-  font-family: var(--font-en);
-  font-size: 28px;
-  text-transform: capitalize;
-  color: var(--_pagination-color);
-}

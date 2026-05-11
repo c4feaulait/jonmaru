@@ -1,23 +1,39 @@
 ---
 import BlogDate from "../components/BlogDate.astro";
 import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
 import { getCollection } from "astro:content";
 
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
     const blogs = await getCollection("blogs");
-    return blogs.map((blog) => ({
-    params: {
-        blogId: blog.id,
-    },
-    props: {
-        blog,
-    },
-    }));
+	// 日付順に並び替え（新しい順）
+	const sortedBlogs = blogs.sort(
+		(a, b) =>
+			new Date(b.data.publishedAt).getTime() -
+			new Date(a.data.publishedAt).getTime()
+	);
+
+	return sortedBlogs.map((blog) => ({
+		params: {
+			blogId: blog.id,
+		},
+		props: {
+			blog,
+			blogs: sortedBlogs,
+		},
+	}));
 }
 
 // 記事の詳細情報を取得
-const { blog } = Astro.props;
+const { blog, blogs } = Astro.props;
+
+// 現在の記事index
+const currentIndex = blogs.findIndex((b) => b.id === blog.id);
+
+// 前後の記事
+const prevPost = blogs[currentIndex - 1];
+const nextPost = blogs[currentIndex + 1];
 ---
 
 <Layout title="My first blog with Astro">
@@ -42,20 +58,6 @@ const { blog } = Astro.props;
     
             </div>
         </section>
-        <div class="container">
-            <nav class="pagination">
-                <ul class="pagination__list">
-                    <li>
-                        <a class="pagination__link " href="#" data-direction="previous">（Previous）</a>
-                    </li>
-                    <li>
-                        <a href="/" class="pagination__link">（all）</a>
-                    </li>
-                    <li>
-                        <a class="pagination__link " href="#" data-direction="next">（next）</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <Pagination prevPost={prevPost? prevPost.id : null} nextPost={nextPost? nextPost.id : null} />
     </main>
 </Layout>

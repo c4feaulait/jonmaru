@@ -1,0 +1,43 @@
+---
+const { prevPost, nextPost } = Astro.props;
+---
+
+
+<nav class="pagination">
+    <ul class="pagination__list">
+        <li>
+            <a class="pagination__link " href={prevPost} data-direction="previous">（Previous）</a>
+        </li>
+        <li>
+            <a href="/" class="pagination__link">（all）</a>
+        </li>
+        <li>
+            <a class="pagination__link " href={nextPost} data-direction="next">（next）</a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    console.log({prevPost: "{prevPost}"});
+    console.log({nextPost: "{nextPost}"});
+</script>
+
+<style>
+.pagination {
+    width: min(800px, 100%);
+    margin-inline: auto;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+}
+.pagination__list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination__link {
+    font-family: var(--font-en);
+    font-size: 28px;
+    text-transform: capitalize;
+    color: var(--_pagination-color);
+}
+</style>
