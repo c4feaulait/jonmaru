@@ -5,22 +5,24 @@ const { prevPost, nextPost } = Astro.props;
 
 <nav class="pagination">
     <ul class="pagination__list">
-        <li>
-            <a class="pagination__link " href={prevPost} data-direction="previous">（Previous）</a>
-        </li>
-        <li>
-            <a href="/" class="pagination__link">（all）</a>
-        </li>
-        <li>
-            <a class="pagination__link " href={nextPost} data-direction="next">（next）</a>
-        </li>
-    </ul>
-</nav>
+        <ul class="pagination__list">
+            {prevPost && (
+                <li>
+                    <a class="pagination__link" href={`/${prevPost}`} data-direction="previous">（Previous）</a>
+                </li>
+            )}
 
-<script>
-    console.log({prevPost: "{prevPost}"});
-    console.log({nextPost: "{nextPost}"});
-</script>
+            <li>
+                <a href="/" class="pagination__link">（all）</a>
+            </li>
+
+            {nextPost && (
+                <li>
+                    <a class="pagination__link" href={`/${nextPost}`} data-direction="next">（next）</a>
+                </li>
+            )}
+        </ul>
+</nav>
 
 <style>
 .pagination {
