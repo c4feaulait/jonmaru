@@ -379,3 +379,7 @@ letter-spacing: .05em;
 .post * + h2 {
   margin-top: 48px;
 }
+
+.parentheses-left {
+  margin-left: calc(-1em / 2);
+}
