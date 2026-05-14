@@ -138,6 +138,11 @@ h5 {
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (min-width: 768px) {
+  .header {
+    display: none;
+  }
+}
 
 .header__link {
   display: flex;
@@ -192,7 +197,7 @@ h5 {
 
 .hamburger-menu__nav {
   height: 100vh;
-  borer: 1px solid var(--color-black);
+  border: 1px solid var(--color-black);
   background-color: var(--color-white);
   padding: 55px 30px;
 }

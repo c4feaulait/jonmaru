@@ -42,24 +42,27 @@ const nextPost = blogs[currentIndex - 1];
     <main>
     </main>
     <main class="sub">
-        <section class="post">
+        <section class="notes">
             <div class="container">
                 {
                     blog ? (
                         <>
-                        <figure class="post__thumb">
-                            <img
-                                src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
-                                alt={blog.data.title}
-                            />
-                        </figure>
-        
-                        <h1 class="post-title">{blog.data.title}</h1>
-                        <div class="post__inner">
-                            <BlogDate date={blog.data.publishedAt} />
-                            <span class="notes__category">diary</span>
-                        </div>
-                        <div class="post" set:html={blog.data.content}></div>
+                        <article>
+                            <figure class="post__thumb">
+                                <img
+                                    src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
+                                    alt={blog.data.title}
+                                />
+                            </figure>
+            
+                            <h1 class="post-title">{blog.data.title}</h1>
+                            <div class="post__inner">
+                                <BlogDate date={blog.data.publishedAt} />
+                                <span class="notes__category">diary</span>
+                            </div>
+                            <div class="post" set:html={blog.data.content}></div>
+                                
+                        </article>
                         </>
                     ) : (
                         <p>記事がありません。</p>
@@ -70,3 +73,11 @@ const nextPost = blogs[currentIndex - 1];
         <Pagination prevPost={prevPost? prevPost.id : null} nextPost={nextPost? nextPost.id : null} />
     </main>
 </Layout>
+
+<style>
+    article {
+        width: min(800px, 100%);
+        margin-right: 0;
+        margin-left: auto;
+    }
+</style>
