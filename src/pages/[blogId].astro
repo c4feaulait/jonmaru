@@ -3,6 +3,7 @@ import BlogDate from "../components/BlogDate.astro";
 import Layout from "../layouts/Layout.astro";
 import Pagination from "../components/Pagination.astro";
 import { getCollection } from "astro:content";
+import Tableofcontent from "src/components/Tableofcontent.astro";
 
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
@@ -54,20 +55,18 @@ const nextPost = blogs[currentIndex - 1];
                                         alt={blog.data.title}
                                     />
                                 </figure>
-                                <nav class="toc">
-                                    <ul class="toc__list">
-                                        <li class="toc__item">
-                                            <a href="/" class="toc__link">見出し１</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <div class="article__inner">
-                                <h1 class="post-title">{blog.data.title}</h1>
-                                <div class="post__inner">
-                                    <BlogDate date={blog.data.publishedAt} />
-                                    <span class="notes__category">diary</span>
+                                <div class="post-title__wrapper">
+                                    <h1 class="post-title">{blog.data.title}</h1>
+                                    <div class="post__inner">
+                                        <BlogDate date={blog.data.publishedAt} />
+                                        <span class="notes__category">diary</span>
+                                    </div>
                                 </div>
-                                <div class="post" set:html={blog.data.content}></div>
+
+                                <div class="article__inner">
+                                    <Tableofcontent />
+                                    <div class="post" set:html={blog.data.content}>
+                                </div>
                             </div>
                         </article>
                         </>
@@ -82,17 +81,15 @@ const nextPost = blogs[currentIndex - 1];
 </Layout>
 
 <style lang="scss">
+    .article__inner {
+        padding-top: 64px;
+    }
     @include mq('md') {
-        article {
+        .article__inner {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: auto 2fr;
     }
-
-        .post__thumb {
-            grid-column: 1 / 3;
-            grid-row: 1;
-        }
     }
     
 </style>
