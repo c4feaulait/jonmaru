@@ -75,7 +75,7 @@ h5 {
 
 /* base */
 .container {
-  width: min(800px, 100%);
+  width: min(1200px, 100%);
   margin-inline: auto;
   padding-inline: 20px;
 }
@@ -299,28 +299,8 @@ letter-spacing: .05em;
 
 /* 記事 */
 .post {
-  padding-top: 40px;
+  padding-top: 64px;
   padding-bottom: 100px;
-}
-
-.post-title {
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -.02em;
-  margin-bottom: 0;
-  margin-top: 16px;
-}
-
-.post h2 + p {
-  margin-top: 4px;
-}
-
-.post p + p {
-  margin-top: 1lh;
-}
-
-.post * + h2 {
-  margin-top: 32px;
 }
 
 .post__inner {
@@ -341,12 +321,6 @@ letter-spacing: .05em;
   row-gap: .7lh;
 }
 
-.post h2 {
-  font-weight: 500;
-  font-size: 16px;
-  margin-bottom: 0;
-}
-
 .post__thumb,
 .notes__thumb {
   width: 100%;
@@ -357,7 +331,51 @@ letter-spacing: .05em;
   }
 }
 
-.text {
-  font-size: 14px;
-  font-feature-settings: "palt";
+.post h2 {
+  position: relative;
+  font-weight: 500;
+  font-size: calc(16 / 16 * 1rem);
+  padding-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.post h2::before,
+.post h2::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  bottom: 0;
+  left: 0;
+}
+
+.post h2::after {
+  width: 10%;
+  background-color: #888;
+}
+
+.post p {
+  font-size: calc(12 / 16 * 1rem);
+}
+
+.post-title {
+  font-weight: 500;
+  font-size: calc(20 / 16 * 1rem);
+  letter-spacing: -.02em;
+  margin-bottom: 0;
+  margin-top: 16px;
+}
+
+.post h2 + p {
+  margin-top: 12px;
+}
+
+.post p + p {
+  margin-top: 1lh;
+}
+
+.post * + h2 {
+  margin-top: 48px;
 }

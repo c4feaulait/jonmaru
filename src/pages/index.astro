@@ -3,7 +3,24 @@ import Layout from "../layouts/Layout.astro";
 import BlogDate from "../components/BlogDate.astro";
 import { getCollection } from "astro:content";
 
+
 const blogs = await getCollection("blogs");
+	// 日付順に並び替え（新しい順）
+const sortedBlogs = blogs.sort(
+		(a, b) =>
+			new Date(b.data.publishedAt).getTime() -
+			new Date(a.data.publishedAt).getTime()
+);
+
+sortedBlogs.map((blog) => ({
+  params: {
+			blogId: blog.id,
+		},
+		props: {
+			blog,
+			blogs: sortedBlogs,
+		},
+}));
 
 ---
 

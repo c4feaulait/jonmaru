@@ -35,8 +35,7 @@ const currentIndex = blogs.findIndex((b) => b.id === blog.id);
 const prevPost = blogs[currentIndex + 1];
 const nextPost = blogs[currentIndex - 1];
 
-console.log({prevPost: prevPost?.data.publishedAt});
-console.log({nextPost: nextPost?.data.publishedAt});
+
 ---
 
 <Layout title="My first blog with Astro">
