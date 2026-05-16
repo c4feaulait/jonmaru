@@ -1,6 +1,6 @@
 @use "sass:math";
 
-:root:has(.hamburger-menu[data-open="true"]) {
+:root:has(.hamburger-menu.is-open) {
     overflow: hidden;
   }
   
