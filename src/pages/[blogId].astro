@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Pagination from "../components/Pagination.astro";
 import { getCollection } from "astro:content";
 import Tableofcontent from "src/components/Tableofcontent.astro";
+import * as cheerio from "cheerio";
 
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
@@ -36,6 +37,13 @@ const currentIndex = blogs.findIndex((b) => b.id === blog.id);
 const prevPost = blogs[currentIndex + 1];
 const nextPost = blogs[currentIndex - 1];
 
+const { content } = blog.data;
+const $ = cheerio.load(content);
+const toc = $("h2").toArray().map((el) => ({
+    id: el.attribs.id ?? "",
+    text: $(el).text(),
+    tag: el.tagName,
+}));
 
 ---
 
@@ -49,7 +57,8 @@ const nextPost = blogs[currentIndex - 1];
                     blog ? (
                         <>
                         <article>
-                                <figure class="post__thumb">
+                                <div class="article__inner">
+                                    <figure class="post__thumb">
                                     <img
                                         src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
                                         alt={blog.data.title}
@@ -62,10 +71,8 @@ const nextPost = blogs[currentIndex - 1];
                                         <span class="notes__category">diary</span>
                                     </div>
                                 </div>
-
-                                <div class="article__inner">
-                                    <Tableofcontent />
-                                    <div class="post" set:html={blog.data.content}>
+                                    <Tableofcontent  tocItems={toc} />
+                                    <div class="post" set:html={content}>
                                 </div>
                             </div>
                         </article>
@@ -86,10 +93,10 @@ const nextPost = blogs[currentIndex - 1];
     }
     @include mq('md') {
         .article__inner {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: auto 2fr;
-    }
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto 2fr;
+        }
     }
     
 </style>

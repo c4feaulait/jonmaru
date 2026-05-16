@@ -1,11 +1,52 @@
 ---
+
+export interface Props {
+  tocItems: Array<{
+    id: string;
+    text: string;
+    tag: string;
+  }>;
+}
+ 
+type TocItem = {
+  id: string;
+  text: string;
+  tag: string;
+  children?: TocItem[];
+};
+ 
+const { tocItems } = Astro.props;
+
+function buildNestedToc(items: Props["tocItems"]): TocItem[] {
+  const result: TocItem[] = [];
+  let currentH2: TocItem | null = null;
+ 
+  for (const item of items) {
+    if (item.tag === "h2") {
+      currentH2 = { ...item, children: [] };
+      result.push(currentH2);
+    } else if (item.tag === "h3" && currentH2) {
+      currentH2.children!.push(item);
+    }
+  }
+ 
+  return result;
+}
+ 
+const nestedToc = buildNestedToc(tocItems);
+
 ---
 
 <nav class="toc">
     <ul class="toc__list">
-        <li class="toc__item">
-            <a href="/" class="toc__link">見出し１</a>
-        </li>
+        {
+        nestedToc.map((item) => (
+        <li class={`toc-item toc-item--h2`}>
+          <a href={`#${item.id}`} class="toc-link">
+            {item.text}
+          </a>
+          </li>
+          ))}
     </ul>
 </nav>
 
