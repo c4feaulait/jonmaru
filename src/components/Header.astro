@@ -1,4 +1,5 @@
 ---
+import HamburgerMenu from "./HamburgerMenu.astro";
 ---
 
 <!-- header -->
@@ -6,32 +7,12 @@
     <div class="header__logo">
       <a class="header__link" href="/">（記録の置き場）</a>
     </div>
-    <button class="hamburger-button" data-open="false">
+    <button class="hamburger-button">
       <span class="hamburger-button__bar"></span>
       <span class="hamburger-button__bar"></span>
       <span class="hamburger-button__bar"></span>
     </button>
-    <div class="hamburger-menu" data-open="false">
-      <div class="hamburger-menu__inner">
-        <nav class="hamburger-menu__nav">
-          <ul class="hamburger-menu__list">
-            <li class="hamburger-menu__item">
-              <a class="hamburger-menu__link" href="#">ホーム</a>
-            </li>
-            <li class="hamburger-menu__item">
-              <a class="hamburger-menu__link" href="#">制作実績</a>
-            </li>
-            <li class="hamburger-menu__item">
-              <a class="hamburger-menu__link" href="#">お問い合わせ</a>
-            </li>
-            <li class="hamburger-menu__item">
-              <a class="hamburger-menu__link" href="#">プライバシーポリシー</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="overlay" data-open=""></div>
+    <HamburgerMenu />
 </header><!-- header end -->
 
 <style>
@@ -40,3 +21,13 @@
     margin-inline: auto;
   }
 </style>
+
+<script>
+  const button = document.querySelector('.hamburger-button');
+  const menu = document.querySelector('.hamburger-menu');
+
+  button?.addEventListener('click', () => {
+    button.classList.toggle('is-open');
+    menu?.classList.toggle('is-open');
+  })
+</script>

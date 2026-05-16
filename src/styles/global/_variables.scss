@@ -3,25 +3,27 @@
 /* variables */
 :root {
     --color-white: #fafafa;
-    /* 少しだけグレーを入れた白 */
     --color-black: #2a2a2a;
-    /* 真っ黒ではない黒 */
     --color-light-black: #333;
     --color-accent: #777;
-    /* メタ情報用グレー */
     --color-gray: #ddd;
     --color-green: #485e8a;
     --color-pink: #ff6e6e;
     --color-red: #d93030;
-    --color-border: #f0f0f0;
-    /* 明確な境界線 */
+    --color-border: #ddd;
+
     --_text-color: var(--color-black);
     --_bg-color: var(--color-white);
     --_pagination-color: var(--color-light-black);
 
-    --font-en: "EB Garamond", serif;
-    --font-jp: "Zen Kaku Gothic New", sans-serif;
+
 
     --easing: cubic-bezier(0.16, 1, 0.3, 1);
     /* 高級感のあるイージング */
+
+    /* フォント */
+    --root-font-size: 16px;
+    --font-en: "EB Garamond", serif;
+    --font-jp: "Zen Kaku Gothic New", sans-serif;
+    --to-rem: calc(tan(atan2(1px, var(--root-font-size))) * 1rem);
 }

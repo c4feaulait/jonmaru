@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout title="お問い合わせ｜記録の置き場">
+  <main>
+  </main>
+  <main class="sub">
+    <section class="notes">
+      <div class="container">
+        <figure class="post__thumb">
+          <img
+              src="/images/no-image.png"
+              alt=""
+          />
+        </figure>
+        <hgroup>
+          <h1 class="page-title">プライバシーポリシー</h1>
+          <p class="page-title--en">privacy policy</p>
+        </hgroup>
+        <div class="inner">
+          <div class="wrapper">
+            <h2>個人情報について</h2>
+            <div class="group">
+              <p>当サイトでは、ご意見・ご感想を送信いただくためのフォームを設置していますが、個人情報の収集は行いません。</p>
+              <p>また、送信内容はサービス改善の参考として利用し、公開・第三者提供は行いません。</p>
+            </div>
+          </div>
+          <div class="wrapper">
+            <h2>アクセス解析ツールについて</h2>
+            <div class="group">
+              <p>当ブログでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにクッキー（Cookie）を使用しております。トラフィックデータは匿名で収集されており、個人を特定するものではありません。</p>
+              <p>Google アナリティクスの利用により収集されたデータは、Googleのプライバシーポリシーに基づいて管理されています。Googleアナリティクスの<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" class="policy__link">利用規約</a>・<a href="https://policies.google.com/privacy?hl=ja" class="policy__link">プライバシーポリシー</a>についてはGoogleアナリティクスのホームページでご確認ください。</p>
+            </div>
+          </div>
+          <div class="wrapper">
+            <h2>Turnstileの利用について</h2>
+            <div class="group">
+              <p>当ブログでは、Cloudflare, Inc.（以下、「Cloudflare社」といいます。）による人間とロボットを区別するための認証テスト「Turnstile」を利用しています。</p>
+              <p>Turnstileは、当サイトをスパム行為や不正行為から保護するため、ユーザーが使用する端末のデータを収集しています。このデータ収集には、Cloudflare社の<a href="https://www.cloudflare.com/ja-jp/privacypolicy/" class="policy__link">プライバシーポリシー</a>と<a href="https://www.cloudflare.com/ja-jp/website-terms/" class="policy__link">利用規約</a>が適用されます</p>
+            </div>
+          </div>
+          <div class="wrapper">
+            <h2>免責事項</h2>
+            <div class="group">
+              <p>当ブログのコンテンツ・情報について、できる限り正確な情報を提供するように努めておりますが、正確性や安全性を保証するものではありません。情報が古くなっていることもございます。</p>
+              <p>当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
+            </div>
+          </div>
+          <div class="wrapper">
+            <h2>著作権について</h2>
+            <div class="group">
+              <p>当ブログで掲載している文章や画像などにつきましては、無断転載することを禁止します。</p>
+              <p>当ブログは著作権や肖像権の侵害を目的としたものではありません。著作権や肖像権に関して問題がございましたら、<a href="#" class="policy__link">お問い合わせフォーム</a>よりご連絡ください。迅速に対応いたします。</p>
+            </div>
+          </div>
+          <div class="wrapper">
+            <h2>リンクについて</h2>
+            <div class="group">
+              <p>当ブログは基本的にリンクフリーです。リンクを行う場合の許可や連絡は不要です。</p>
+              <p>ただし、インラインフレームの使用や画像の直リンクはご遠慮ください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .inner {
+    display: grid;
+    row-gap: 48px;
+    padding-top: 64px;
+  }
+
+  h2 {
+    position: relative;
+    font-weight: 500;
+    font-size: calc(16 / 16 * 1rem);
+    padding-bottom: 8px;
+    margin-bottom: 0;
+
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      bottom: 0;
+      left: 0;
+    }
+
+    &::after {
+      width: 10%;
+      background-color: #888;
+    }
+  }
+  
+  .group {
+    display: grid;
+    row-gap: 1lh;
+    margin-top: 12px;
+  }
+
+  a {
+    border-bottom: 1px solid currentColor;
+  }
+
+</style>

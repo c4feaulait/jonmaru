@@ -1,0 +1,78 @@
+---
+
+---
+
+<div class="hamburger-menu">
+    <div class="container">
+        <h2>Postscript</h2>
+        <div class="hamburger-menu__inner">
+            <p>「記録の置き場」にご来訪いただき、ありがとうございます。</p>
+            <p>ゆるーく更新していきますので、よろしくお願いいたします。</p>
+            <p class="hamburger-menu__text">じょんまる</p>
+        </div>
+        <nav class="hamburger-menu__nav">
+            <ul class="hamburger-menu__list">
+                <li class="hamburger-menu__item">
+                    <a class="hamburger-menu__link" href="#">お問い合わせ</a>
+                </li>
+                <li class="hamburger-menu__item">
+                    <a class="hamburger-menu__link" href="#">プライバシーポリシー</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<style lang="scss">
+    h2 {
+        font-family: var(--font-en);
+        font-weight: 500;
+        font-size: calc(24 * var(--to-rem));
+    }
+
+    .hamburger-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 80px;
+        background-color: var(--_bg-color);
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .6s cubic-bezier(0.2, 1.55, 0.5, .9);
+
+        &.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .hamburger-menu__inner {
+        display: grid;
+        row-gap: 1lh;
+        margin-top: 12px;
+    }
+
+    .hamburger-menu__text {
+        text-align: right;
+    }
+
+    .hamburger-menu__nav {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .hamburger-menu__list {
+        display: grid;
+        row-gap: 6px;
+    }
+
+    .hamburger-menu__link {
+        color: var(--color-accent);
+    }
+
+
+</style>
