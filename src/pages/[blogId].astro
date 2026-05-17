@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination.astro";
 import { getCollection } from "astro:content";
 import Tableofcontent from "src/components/Tableofcontent.astro";
 import * as cheerio from "cheerio";
+import { codeToHtml } from "shiki"
 
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
@@ -45,11 +46,31 @@ const toc = $("h2").toArray().map((el) => ({
     tag: el.tagName,
 }));
 
+const promise: any = [];
+$("pre").each(function () {
+    const element = $(this);
+    // 言語名を取得
+    const lang = element.find("code")?.attr("class")?.replace("language-", "");
+
+    // preタグをShikiに渡してハイライトしてもらう
+    const code = codeToHtml(element.text(), {
+        lang: lang ?? "plaintext", // 言語名
+        theme: "dark-plus", // Shikiのテーマ
+        // transformers: [addCopyButton({ toggle: 3000 })], // コピーボタンを付与
+    }).then((highlight) => {
+        // 元のpreタグを置き換える
+        element.replaceWith(highlight);
+    });
+    promise.push(code);
+});
+await Promise.all(promise);
+
+// 表示側に渡すための整形済みコンテンツ
+const formattedContent = $.html();
+
 ---
 
 <Layout title="My first blog with Astro">
-    <main>
-    </main>
     <main class="sub">
         <section class="notes">
             <div class="container">
@@ -72,7 +93,7 @@ const toc = $("h2").toArray().map((el) => ({
                                 </div>
                             <div class="article__inner">
                                 <Tableofcontent  tocItems={toc} />
-                                <div class="post" set:html={content}></div>
+                                <div class="post" set:html={formattedContent}></div>
                             </div>
                         </article>
                         </>
@@ -117,5 +138,5 @@ const toc = $("h2").toArray().map((el) => ({
             grid-row: 3 / 4;
         }
     }
-    
+
 </style>

@@ -100,9 +100,6 @@ letter-spacing: .05em;
 ーーーーーーーーーーーーーー */
 
 /* 記事 */
-// .post {
-//   padding-top: 64px;
-// }
 
 .post__inner {
   display: flex;
@@ -146,6 +143,12 @@ letter-spacing: .05em;
   background-color: #888;
 }
 
+.post h3,
+.post h4,
+.post h5 {
+  font-weight: 500;
+}
+
 .post p {
   font-size: calc(14 * var(--to-rem));
 }
@@ -158,20 +161,58 @@ letter-spacing: .05em;
   margin-top: 16px;
 }
 
-.post h2 + p {
-  margin-top: 12px;
+.post * + ul,
+.post * + ol,
+.post * + p,
+.post * + pre {
+  margin-top: 1lh;
 }
 
-.post p + p {
+.post * + p {
   margin-top: 1lh;
+}
+
+.post h2 + p {
+  margin-top: 12px;
 }
 
 .post * + h2 {
   margin-top: 48px;
 }
 
+.post * + h3 {
+  margin-top: 1lh;
+}
+
 .parentheses-left {
   margin-left: calc(-1em / 2);
+}
+
+.post pre {
+  white-space: pre;
+  padding: 6px;
+}
+
+.post li {
+  position: relative;
+  padding-left: 1em;
+
+  &::before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 4px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    left: .2em;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-accent);
+  }
+}
+
+.post .shiki {
+    overflow-x: scroll;
 }
 
 /* ーーーーーーーーーーーーー
