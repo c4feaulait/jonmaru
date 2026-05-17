@@ -189,8 +189,9 @@ letter-spacing: .05em;
 }
 
 .post pre {
-  white-space: pre;
   padding: 6px;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .post li {
@@ -209,10 +210,6 @@ letter-spacing: .05em;
     transform: translateY(-50%);
     background-color: var(--color-accent);
   }
-}
-
-.post .shiki {
-    overflow-x: scroll;
 }
 
 /* ーーーーーーーーーーーーー
