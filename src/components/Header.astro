@@ -1,11 +1,13 @@
 ---
 import HamburgerMenu from "./HamburgerMenu.astro";
+
+const siteTitle = import.meta.env.SITE_TITLE;
 ---
 
 <!-- header -->
 <header class="header">
     <div class="header__logo">
-      <a class="header__link" href="/">（記録の置き場）</a>
+      <a class="header__link" href="/">（{ siteTitle }）</a>
     </div>
     <button class="hamburger-button">
       <span class="hamburger-button__bar"></span>

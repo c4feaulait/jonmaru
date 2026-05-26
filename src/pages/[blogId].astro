@@ -7,6 +7,8 @@ import Tableofcontent from "src/components/Tableofcontent.astro";
 import * as cheerio from "cheerio";
 import { codeToHtml } from "shiki"
 
+const siteTitle = import.meta.env.SITE_TITLE;
+
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
     const blogs = await getCollection("blogs");
@@ -68,9 +70,13 @@ await Promise.all(promise);
 // 表示側に渡すための整形済みコンテンツ
 const formattedContent = $.html();
 
+const blogTitle = blog.data.title;
+const pageTitle = `${blogTitle}｜${siteTitle}`
+
+
 ---
 
-<Layout title="My first blog with Astro">
+<Layout title={ pageTitle }>
     <main class="sub">
         <section class="notes">
             <div class="container">

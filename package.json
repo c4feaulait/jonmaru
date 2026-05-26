@@ -1,9 +1,9 @@
 {
-  "name": "my-first-astro-blog",
+  "name": "記録の置き場",
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "astro dev",

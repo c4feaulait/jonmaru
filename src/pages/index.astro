@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BlogDate from "../components/BlogDate.astro";
+import BlogCard from "src/components/BlogCard.astro"; 
 import { getCollection } from "astro:content";
 
 
@@ -24,7 +24,7 @@ sortedBlogs.map((blog) => ({
 
 ---
 
-<Layout title="My first blog with Astro">
+<Layout title="記録の置き場">
   <main>
     <section class="notes">
       <div class="container">
@@ -34,23 +34,12 @@ sortedBlogs.map((blog) => ({
       {
         blogs.length > 0 ? (
           blogs.map((blog) => (
-            <li class="notes__item">
-            <a href={blog.id} class="notes__link">
-              <figure class="notes__thumb">
-                <img
-                  src={blog.data.thumbnail?.url ?? "/images/no-image.png"}
-                  alt={blog.data.title}
-                />
-                </figure>
-              <div class="notes__content">
-                <div class="notes__inner">
-                  <BlogDate date={blog.data.publishedAt} />
-                  <span class="notes__category">diary</span>
-                </div>
-                <h3 class="notes__title">{blog.data.title}</h3>
-              </div>
-            </a>
-          </li>
+            <BlogCard
+              blogID = {blog.id}
+              blogThumb = {blog.data.thumbnail?.url}
+              blogTitle = {blog.data.title}
+              blogDate = {blog.data.publishedAt}
+            />
           ))
         ) : (
           <p>記事がありません。</p>

@@ -1,0 +1,23 @@
+---
+import BlogDate from "./BlogDate.astro";
+
+const { blogID, blogThumb, blogTitle, blogDate } = Astro.props;
+---
+
+<li class="notes__item">
+    <a href={blogID} class="notes__link">
+        <figure class="notes__thumb">
+            <img
+            src={blogThumb ?? "/images/no-image.png"}
+            alt={blogTitle}
+            />
+            </figure>
+        <div class="notes__content">
+            <div class="notes__inner">
+            <BlogDate date={blogDate} />
+            <span class="notes__category">diary</span>
+            </div>
+            <h3 class="notes__title">{blogTitle}</h3>
+        </div>
+    </a>
+</li>
